@@ -19,5 +19,4 @@ COPY postcss.config.js postcss.config.js
 COPY vite.config.ts vite.config.ts
 COPY codegen.ts codegen.ts
 
-CMD npm run dev 
-# CMD npm run dev & npm run generate
+CMD npm run dev & npm run generate

@@ -18,18 +18,18 @@ Ce dépôt contient une base de travail sur la branche main, puis l'avancée pet
 ## <div style="background-color: #154275; padding: 10px; color: white;">Structure du Projet</div>
 
 - **backend/** : Application TypeGraphQL avec Apollo Server
-- **frontend/** : Application Next.js (sans utilisation du dossier api, Page Router)
+- **frontend/** : Application Vite
 
 ## <div style="background-color: #154275; padding: 10px; color: white;">Technologie Utilisée</div>
 
 - **Backend** : TypeGraphQL, Apollo Server, TypeORM
-- **Frontend** : Next.js
+- **Frontend** : Vite
 - **Base de Données** : SQLite
 - **Environnement** : Docker via docker-compose.yml à la racine du projet
 
 ## <div style="background-color: #154275; padding: 10px; color: white;">Installation</div>
 
-1. Cloner ce dépôt : `git clone https://github.com/delbaze/jwt-quete`
+1. Cloner ce dépôt : `git clone https://github.com/delbaze/jwt-quete-vite`
 
 ##### Si vous souhaitez installer les dépendances localement directement plutôt que de mapper vos dossiers node_modules :
 

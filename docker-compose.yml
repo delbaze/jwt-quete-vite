@@ -2,7 +2,7 @@ services:
   backend:
     build: ./backend
     ports:
-      - 4000:4000
+      - 4005:4005
     volumes:
       - ./backend/src:/app/src
     env_file:
@@ -11,7 +11,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "curl -f http://backend:4000/graphql?query=%7B__typename%7D -H 'Apollo-Require-Preflight: true' || exit 1",
+          "curl -f http://backend:4005/graphql?query=%7B__typename%7D -H 'Apollo-Require-Preflight: true' || exit 1",
         ]
       interval: 10s
       timeout: 30s
@@ -20,7 +20,7 @@ services:
     build: ./frontend
     # command: "sh -c ./start.sh"
     ports:
-      - 3000:3000
+      - 5173:5173
     volumes:
       - ./frontend/src:/app/src
     env_file:

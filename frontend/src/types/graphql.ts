@@ -74,8 +74,8 @@ export function useBooksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Book
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<BooksQuery, BooksQueryVariables>(BooksDocument, options);
         }
-export function useBooksSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<BooksQuery, BooksQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useBooksSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<BooksQuery, BooksQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<BooksQuery, BooksQueryVariables>(BooksDocument, options);
         }
 export type BooksQueryHookResult = ReturnType<typeof useBooksQuery>;

@@ -1,11 +1,9 @@
-function Register() {
+export default function Home() {
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24`}
     >
-      Ici le formulaire d'inscription
+      <div>Accueil</div>
     </main>
   );
 }
-
-export default Register;

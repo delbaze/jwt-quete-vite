@@ -5,8 +5,10 @@ services:
       - 4005:4005
     volumes:
       - ./backend/src:/app/src
+      - ./backend/demo.sqlite:/app/demo.sqlite
     env_file:
       - ./global.env
+      - ./backend/.env
     healthcheck:
       test:
         [

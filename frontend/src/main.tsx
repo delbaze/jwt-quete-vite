@@ -1,12 +1,11 @@
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import App from "./App.tsx";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Home from "./components/layout-elements/Home.tsx";
 import Login from "./components/layout-elements/auth/Login.tsx";
 import Register from "./components/layout-elements/auth/Register.tsx";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import "./index.css";
 
 export const client = new ApolloClient({
   cache: new InMemoryCache({

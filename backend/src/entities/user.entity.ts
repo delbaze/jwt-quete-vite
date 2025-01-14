@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { Field, ObjectType } from "type-graphql";
+import * as argon2 from "argon2";
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Field, InputType, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
@@ -9,10 +10,33 @@ export default class User {
   id: string;
 
   @Field()
-  @Column({unique: true})
+  @Column({ unique: true })
   email: string;
 
   @Field()
   @Column()
+  password: string;
+
+  @BeforeInsert()
+  protected async hashPassword() {
+    this.password = await argon2.hash(this.password);
+  }
+}
+
+@ObjectType()
+export class UserWithoutPassword implements Omit<User, "password"> {
+  @Field()
+  id: string;
+
+  @Field()
+  email: string;
+}
+
+@InputType()
+export class InputRegister {
+  @Field()
+  email: string;
+
+  @Field()
   password: string;
 }

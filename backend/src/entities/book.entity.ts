@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { Field, ObjectType } from "type-graphql";
+import { Field, InputType, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
@@ -13,4 +13,11 @@ export default class Book {
   title: string;
 }
 
+
+
+@InputType()
+export class InputCreateBook implements Omit<Book, "id"> {
+  @Field()
+  title: string;
+}
 

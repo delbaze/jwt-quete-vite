@@ -11,6 +11,7 @@ export const client = new ApolloClient({
   cache: new InMemoryCache({
     addTypename: false,
   }),
+  credentials: "include",
   uri: "http://localhost:4005",
 });
 

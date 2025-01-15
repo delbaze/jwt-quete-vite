@@ -4,9 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.tsx";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import Home from "./components/layout-elements/Home.tsx";
-import Login from "./components/layout-elements/auth/Login.tsx";
-import Register from "./components/layout-elements/auth/Register.tsx";
+import Home from "./components/Home.tsx";
+import Login from "./components/auth/Login.tsx";
+import Register from "./components/auth/Register.tsx";
 
 export const client = new ApolloClient({
   cache: new InMemoryCache({

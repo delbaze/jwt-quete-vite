@@ -22,7 +22,9 @@ function Login() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24`}
     >
+
       <form onSubmit={handleSubmit}>
+      <h1 className="mb-5">Connexion</h1>
         <div>
           <input type="text" name="email" placeholder="Indiquez votre email" />
         </div>

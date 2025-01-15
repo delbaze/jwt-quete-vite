@@ -3,7 +3,7 @@ import { InputLogin, LoginQuery, LoginQueryVariables } from "@/types/graphql";
 import { useLazyQuery } from "@apollo/client";
 
 function Login() {
-  const [login] = useLazyQuery<
+  const [login, { data, error }] = useLazyQuery<
     LoginQuery,
     LoginQueryVariables
   >(LOGIN);
@@ -34,6 +34,14 @@ function Login() {
           />
         </div>
         <input type="submit" />
+        <div>
+          <span className="text-red-500">{error?.message}</span>
+          {data?.login.success ? (
+            <span className="text-blue-500">{data?.login?.message}</span>
+          ) : (
+            <span className="text-red-500">{data?.login?.message}</span>
+          )}
+        </div>
       </form>
     </main>
   );

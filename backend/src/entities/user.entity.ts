@@ -10,7 +10,15 @@ export default class User {
   id: string;
 
   @Field()
-  @Column({ unique: true })
+  @Column({unique: true, transformer: {
+			from(value : string) {
+		    return value.toLowerCase()
+		  },
+			to(value: string)  {
+		    return value.toLowerCase() 
+		  },
+		}
+	})
   email: string;
 
   @Field()
@@ -32,7 +40,6 @@ export class UserWithoutPassword implements Omit<User, "password"> {
   email: string;
 }
 
-
 @ObjectType()
 export class Message {
   @Field()
@@ -40,6 +47,12 @@ export class Message {
 
   @Field()
   message: string;
+}
+
+@ObjectType()
+export class CheckTokenInfos {
+  @Field()
+  email: string;
 }
 
 @InputType()
@@ -51,8 +64,6 @@ export class InputRegister {
   password: string;
 }
 
-
-
 @InputType()
 export class InputLogin {
   @Field()
@@ -61,5 +72,3 @@ export class InputLogin {
   @Field()
   password: string;
 }
-
-

@@ -1,6 +1,7 @@
 import { Arg, Ctx, Mutation, Query, Resolver } from "type-graphql";
 import UserService from "../services/user.service";
 import User, {
+  CheckTokenInfos,
   InputLogin,
   InputRegister,
   Message,
@@ -52,8 +53,13 @@ export default class UserResolver {
     const m = new Message();
     m.message = "Vous avez été déconnecté";
     m.success = true;
-    
+
     return m;
+  }
+
+  @Query(() => CheckTokenInfos, { nullable: true })
+  async checkToken(@Ctx() ctx: MyContext) {
+    return ctx.user ? { email: ctx.user.email } : null;
   }
 
   @Mutation(() => UserWithoutPassword)

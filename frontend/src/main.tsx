@@ -9,6 +9,8 @@ import "./index.css";
 import ListBooks from "./components/ListBooks.tsx";
 import CreateBook from "./components/CreateBook.tsx";
 import Logout from "./components/auth/Logout.tsx";
+import ProtectedArea from "./components/auth/ProtectedArea.tsx";
+import AuthProvider from "./context/AuthContext.tsx";
 
 export const client = new ApolloClient({
   cache: new InMemoryCache({
@@ -30,13 +32,22 @@ const router = createBrowserRouter([
       { path: "/auth/register", element: <Register /> },
       { path: "/auth/logout", element: <Logout /> },
       { path: "/books/list", element: <ListBooks /> },
-      { path: "/books/create", element: <CreateBook /> },
+      {
+        path: "/books/create",
+        element: (
+          <ProtectedArea>
+            <CreateBook />
+          </ProtectedArea>
+        ),
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <ApolloProvider client={client}>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </ApolloProvider>
 );

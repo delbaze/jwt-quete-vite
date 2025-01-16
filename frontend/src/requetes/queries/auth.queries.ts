@@ -17,3 +17,11 @@ export const LOGOUT = gql`
     }
   }
 `;
+
+export const CHECK_TOKEN = gql`
+  query CheckToken {
+    checkToken {
+      email
+    }
+  }
+`;

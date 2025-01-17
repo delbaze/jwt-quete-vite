@@ -17,8 +17,14 @@ export const useAuth = () => {
 };
 
 function AuthProvider({ children }: PropsWithChildren) {
-  const [state, setState] = useState<{ infos: ContextType["infos"] }>({
-    infos: { email: "" },
+  const [state, setState] = useState<{ infos: ContextType["infos"] }>(() => {
+    const infos = localStorage.getItem("infos");
+    if (infos) {
+      return { infos: JSON.parse(infos) };
+    }
+    return {
+      infos: { email: "" },
+    };
   });
   const [checkToken] = useLazyQuery<CheckTokenQuery>(CHECK_TOKEN, {
     fetchPolicy: "no-cache",
@@ -29,7 +35,10 @@ function AuthProvider({ children }: PropsWithChildren) {
     getInfos: async () => {
       await checkToken({
         onCompleted(data) {
-          setState({ infos: { email: data.checkToken?.email ?? "" } });
+          const infos = { email: data.checkToken?.email ?? "" };
+          console.log("%c⧭", "color: #f200e2", infos);
+          setState({ infos });
+          localStorage.setItem("infos", JSON.stringify(infos));
         },
       });
     },
